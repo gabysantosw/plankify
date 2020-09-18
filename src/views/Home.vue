@@ -1,18 +1,43 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+<template lang="pug">
+  main
+    LastPlank(:planks='planks')
+    PlankAction(:hasPlankToday='hasPlankToday')
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { mapState } from 'vuex';
+import LastPlank from '@/components/LastPlank.vue';
+import PlankAction from '@/components/PlankAction.vue';
 
-@Component({
-  components: {
-    HelloWorld,
+export default {
+  name: 'Home',
+  components: { LastPlank, PlankAction },
+  computed: {
+    ...mapState(['user', 'planks']),
+    hasPlankToday() {
+      if (this.planks.length === 0) return false;
+      const currentDate = new Date();
+      return currentDate.getDate() === this.planks[this.planks.length - 1].day;
+    },
   },
-})
-export default class Home extends Vue {}
+};
+
+// TYPESCRIPT
+// import { Component, Vue } from 'vue-property-decorator';
+// import { mapState } from 'vuex';
+// import LastPlank from '@/components/LastPlank.vue';
+// import PlankAction from '@/components/PlankAction.vue';
+
+// @Component({
+//   components: {
+//     LastPlank,
+//     PlankAction,
+//   },
+//   computed: mapState({ user: 'username', planks: 'planks' }),
+// })
+// export default class Home extends Vue {
+//   get lastPlankDate() {
+//     return true;
+//   }
+// }
 </script>
