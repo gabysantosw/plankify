@@ -1,5 +1,5 @@
 export interface Plank {
-  seconds: number;
+  totalSeconds: number;
   day: number;
   month: number;
   year: number;
