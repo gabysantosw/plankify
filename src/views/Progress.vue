@@ -1,11 +1,12 @@
 <template lang="pug">
   main.last-planks
-    h2 Last planks
+    h2 Progress
     ul 
       PlankItem(v-for='plank in planks' :plank='plank') 
 </template>
 
 <script lang="ts">
+/*
 import { mapState } from 'vuex';
 import PlankItem from '@/components/PlankItem.vue';
 
@@ -16,10 +17,22 @@ export default {
     ...mapState(['planks']),
   },
 };
+*/
 
 // TYPESCRIPT
-// import { Component, Vue } from 'vue-property-decorator';
+// /*
+import { Component, Vue } from 'vue-property-decorator';
+import { mapState } from 'vuex';
+import PlankItem from '@/components/PlankItem.vue';
 
-// @Component({})
-// export default class Progress extends Vue {}
+@Component({
+  components: {
+    PlankItem,
+  },
+  computed: {
+    ...mapState(['planks']),
+  },
+})
+export default class Progress extends Vue {}
+// */
 </script>

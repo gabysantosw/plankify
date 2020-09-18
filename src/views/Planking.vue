@@ -8,7 +8,8 @@
       button.button(@click='endInterval') Done!
 </template>
 
-<script>
+<script lang="ts">
+/*
 import { mapActions, mapState } from 'vuex';
 
 export default {
@@ -38,7 +39,7 @@ export default {
         month: this.startTime.getMonth(),
         year: this.startTime.getFullYear(),
       };
-      console.log(plank);
+
       this.addPlank(plank);
       window.cancelAnimationFrame(this.interval);
       this.interval = null;
@@ -53,13 +54,53 @@ export default {
     },
   },
 };
+*/
 
 // TYPESCRIPT
-// import { Component, Vue } from 'vue-property-decorator';
-// import { mapState } from 'vuex';
+// /*
+import { Component, Vue } from 'vue-property-decorator';
+import { mapActions } from 'vuex';
+import { Plank } from '@/types/index.ts';
 
-// @Component({
-//   computed: mapState({ planks: 'planks' }),
-// })
-// export default class Planking extends Vue {}
+@Component({
+  methods: mapActions(['addPlank']),
+})
+export default class Planking extends Vue {
+  startTime: Date = new Date();
+  currentTime: Date = new Date();
+  interval = 0;
+
+  addPlank!: (plank: Plank) => Promise<void>;
+
+  created() {
+    this.startTime = new Date();
+    this.currentTime = new Date();
+    this.interval = requestAnimationFrame(this.updateTime);
+  }
+
+  get secondsPassed() {
+    return Math.round((this.currentTime.getTime() - this.startTime.getTime()) / 1000);
+  }
+
+  updateTime() {
+    this.currentTime = new Date();
+    this.interval = requestAnimationFrame(this.updateTime);
+  }
+
+  endInterval() {
+    const plank = {
+      totalSeconds: this.secondsPassed,
+      day: this.startTime.getDate(),
+      month: this.startTime.getMonth(),
+      year: this.startTime.getFullYear(),
+    };
+
+    this.addPlank(plank);
+    window.cancelAnimationFrame(this.interval);
+    this.interval = 0;
+
+    this.$router.push('/');
+  }
+}
+// */
 </script>

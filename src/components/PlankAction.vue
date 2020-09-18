@@ -9,18 +9,20 @@
 </template>
 
 <script lang="ts">
+/*
 export default {
   name: 'PlankAction',
   props: ['hasPlankToday'],
 };
+*/
 
 // TYPESCRIPT
-// import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-// @Component
-// export default class PlankAction extends Vue {
-//   @Prop() private hasPlankToday!: boolean;
-// }
+@Component
+export default class PlankAction extends Vue {
+  @Prop() hasPlankToday!: boolean;
+}
 </script>
 
 <style scoped lang="scss"></style>

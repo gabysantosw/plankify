@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import { Plank } from '@/types/index';
+import { Plank } from '@/types/index';
 
 Vue.use(Vuex);
 
@@ -10,13 +10,13 @@ const ADD_PLANK = 'add plank';
 export default new Vuex.Store({
   state: {
     username: 'Gaby',
-    planks: [{}],
+    planks: Array<Plank>(),
   },
   mutations: {
     [SET_USER](state, username) {
       state.username = username;
     },
-    [ADD_PLANK](state, plank) {
+    [ADD_PLANK](state, plank: Plank) {
       state.planks.push(plank);
     },
   },
@@ -24,7 +24,7 @@ export default new Vuex.Store({
     logUser({ commit }, username) {
       commit(SET_USER, username);
     },
-    addPlank({ commit }, plank) {
+    addPlank({ commit }, plank: Plank) {
       commit(ADD_PLANK, plank);
     },
   },

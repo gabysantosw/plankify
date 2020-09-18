@@ -9,10 +9,11 @@
 </template>
 
 <script lang="ts">
+/*
 import PlankItem from '@/components/PlankItem.vue';
 
 export default {
-  name: 'Home',
+  name: 'LastPlank',
   components: { PlankItem },
   props: ['planks'],
   computed: {
@@ -22,14 +23,24 @@ export default {
     },
   },
 };
+*/
 
-// import { Component, Prop, Vue } from 'vue-property-decorator';
-// import { Plank } from '@/types/index';
+// TYPESCRIPT
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Plank } from '@/types/index';
+import PlankItem from '@/components/PlankItem.vue';
 
-// @Component
-// export default class LastPlank extends Vue {
-//   @Prop() private planks!: Plank[];
-// }
+@Component({
+  components: { PlankItem },
+})
+export default class LastPlank extends Vue {
+  @Prop() private planks!: Plank[];
+
+  get lastThree() {
+    if (this.planks.length < 4) return this.planks;
+    return this.planks.slice(this.planks.length - 3, this.planks.length);
+  }
+}
 </script>
 
 <style scoped lang="scss"></style>
