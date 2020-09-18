@@ -1,10 +1,13 @@
 <template lang="pug">
   #app.container
     nav
-      router-link.logo(to="/") 
-        span Plank
-        span ify
-      router-link.nav-link(to="/progress") Progress
+      ul 
+        li 
+          router-link.logo(to="/") 
+            span Plank
+            span ify
+        li
+          router-link.nav-link(to="/progress") Progress
     router-view
 </template>
 
