@@ -1,8 +1,10 @@
 <template lang="pug">
-  #app
+  #app.container
     nav
-      router-link(to="/") Plankify
-      router-link(to="/progress") Progress
+      router-link.logo(to="/") 
+        span Plank
+        span ify
+      router-link.nav-link(to="/progress") Progress
     router-view
 </template>
 
