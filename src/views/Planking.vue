@@ -2,6 +2,7 @@
   main
     .info
       h2 You can do it
+      .progress
       p {{ secondsPassed }} seconds
     section.cta
       p Press when your plank drops
