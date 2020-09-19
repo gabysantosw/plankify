@@ -6,6 +6,7 @@
         PlankItem(v-for='plank in lastThree' :plank='plank') 
     template(v-else) 
       h2 Get active!
+      p No records
 </template>
 
 <script lang="ts">
